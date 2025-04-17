@@ -3,23 +3,20 @@ import requests
 
 app = Flask(__name__)
 
-cache = {}
-
 API_TEMPO_URL = "http://localhost:5001/weather/"
 
 @app.route("/recommendation/<city>", methods=["GET"])
 def get_recommendation(city):
     city_key = city.replace(" ", "").capitalize()
 
-    if city_key in cache:
-        weather = cache[city_key]
+    if 1 = 2:
+        return jsonify({"error": "Erro ao Consultar API-Tempo"}), 500
     else:
         try:
             response = requests.get(API_TEMPO_URL + city)
             if response.status_code != 200:
                 return jsonify({"error": "Cidade nao encontrada"}), 404
             weather = response.json()
-            cache[city_key] = weather
         except Exception as e:
             return jsonify({"error": "Erro ao Consultar API-Tempo"}), 500
 
